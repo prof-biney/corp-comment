@@ -15,8 +15,14 @@ export default function FeedbackForm({ onAddToList }: FeedBackFormProps) {
     setText(newText);
   };
 
+  const handleSubmit = function (e) {
+    e.preventDefault();
+
+    onAddToList(text);
+  };
+
   return (
-    <form className="form">
+    <form onSubmit={handleSubmit} className="form">
       <textarea
         onChange={handleChange}
         value={text}
