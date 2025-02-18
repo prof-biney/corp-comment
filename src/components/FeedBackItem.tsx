@@ -21,7 +21,7 @@ export default function FeedBackItem({ feedbackItem }: FeedbackItemProps) {
         <p>{feedbackItem.text}</p>
       </div>
 
-      <p>{feedbackItem.daysAgo}</p>
+      <p>{feedbackItem.daysAgo}d</p>
     </li>
   );
 }
