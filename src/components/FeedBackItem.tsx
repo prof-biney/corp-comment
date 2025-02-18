@@ -20,18 +20,15 @@ export default function FeedBackItem({ feedbackItem }: FeedbackItemProps) {
         <span>{feedbackItem.upvoteCount}</span>
       </button>
       <div>
-        <p>B</p>
+        <p>{feedbackItem.badgeLetter}</p>
       </div>
 
       <div>
-        <p>ByteGrad</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam,
-          recusandae! Blanditiis nobis illo dolores at.
-        </p>
+        <p>{feedbackItem.companyName}</p>
+        <p>{feedbackItem.text}</p>
       </div>
 
-      <p>4d</p>
+      <p>{feedbackItem.daysAgo}</p>
     </li>
   );
 }

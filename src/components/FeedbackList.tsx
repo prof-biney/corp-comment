@@ -8,26 +8,27 @@ export default function FeedbackList() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(
-      "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error();
-        }
+  const fetchFeedbackItems = async function () {
+    try {
+      setIsLoading(true);
 
-        res.json();
-      })
-      .then((data) => {
-        setFeedbackItems(data.feedbacks);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setErrorMessage("Something went wrong");
-        setIsLoading(false);
-      });
+      const res = await fetch(
+        "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
+      );
+
+      if (!res.ok) throw new Error();
+
+      const data = await res.json();
+      setFeedbackItems(data.feedbacks);
+      console.log(data.feedbacks);
+    } catch (error) {
+      setErrorMessage("Something went wrong. Please try again");
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchFeedbackItems();
   }, []);
 
   return (
