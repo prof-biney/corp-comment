@@ -1,36 +1,19 @@
-import { useEffect, useState } from "react";
 import FeedBackItem from "./FeedBackItem";
 import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
+import { TFeedbackItem } from "../lib/types";
 
-export default function FeedbackList() {
-  const [feedbackItems, setFeedbackItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+type FeedbackListProps = {
+  isLoading: boolean;
+  errorMessage: string;
+  feedbackItems: TFeedbackItem[];
+};
 
-  const fetchFeedbackItems = async function () {
-    try {
-      setIsLoading(true);
-
-      const res = await fetch(
-        "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
-      );
-
-      if (!res.ok) throw new Error();
-
-      const data = await res.json();
-      setFeedbackItems(data.feedbacks);
-      console.log(data.feedbacks);
-    } catch (error) {
-      setErrorMessage("Something went wrong. Please try again");
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchFeedbackItems();
-  }, []);
-
+export default function FeedbackList({
+  errorMessage,
+  isLoading,
+  feedbackItems,
+}: FeedbackListProps) {
   return (
     <ol className="feedback-list">
       {isLoading && <Spinner />}
