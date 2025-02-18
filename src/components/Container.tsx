@@ -6,16 +6,18 @@ type ContainerProps = {
   isLoading: boolean;
   errorMessage: string;
   feedbackItems: TFeedbackItem[];
+  handleAddToList: (text: string) => void;
 };
 
 export default function Container({
   errorMessage,
   isLoading,
   feedbackItems,
+  handleAddToList,
 }: ContainerProps) {
   return (
     <main className="container">
-      <Header />
+      <Header handleAddToList={handleAddToList} />
       <FeedbackList
         isLoading={isLoading}
         errorMessage={errorMessage}
