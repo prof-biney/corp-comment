@@ -10,8 +10,9 @@ export default function FeedBackItem({ feedbackItem }: FeedbackItemProps) {
   const [open, setOpen] = useState(false);
   const [upvoteCount, setUpvoteCount] = useState(feedbackItem.upvoteCount);
 
-  const handleUpvote = () => {
+  const handleUpvote = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setUpvoteCount((prev) => ++prev);
+    e.stopPropagation();
   };
 
   return (
