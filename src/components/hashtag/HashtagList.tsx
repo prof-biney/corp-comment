@@ -11,8 +11,22 @@ export default function HashtagList({
 }: HashtagListProps) {
   return (
     <ul className="hashtags">
+      <li>
+        <button
+          onClick={() => {
+            handleSelectCompany("");
+          }}
+        >
+          #All
+        </button>
+      </li>
+
       {companyList.map((company) => (
-        <HashtagItem onSelectCompany={handleSelectCompany} company={company} />
+        <HashtagItem
+          key={company}
+          onSelectCompany={handleSelectCompany}
+          company={company}
+        />
       ))}
 
       {/* <li>
