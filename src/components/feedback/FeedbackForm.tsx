@@ -17,8 +17,8 @@ export default function FeedbackForm({ onAddToList }: FeedBackFormProps) {
 
   const handleSubmit = function (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     onAddToList(text);
+    setText("");
   };
 
   return (
